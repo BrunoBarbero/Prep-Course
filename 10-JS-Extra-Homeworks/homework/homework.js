@@ -1,7 +1,8 @@
 // No cambies los nombres de las funciones.
 
 function deObjetoAmatriz(objeto){
-  // Escribe una función que convierta un objeto en una matriz, donde cada elemento representa 
+  // Escribe una función que convierta un objeto en una matriz, 
+  //donde cada elemento representa 
   // un par clave-valor en forma de matriz.
   //Ejemplo: 
   /*objeto({
@@ -10,6 +11,11 @@ function deObjetoAmatriz(objeto){
       C: 3
     }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
+  var array = [];
+  for (var clave in objeto){
+    array.push([clave, objeto[clave]])
+  }
+  return array;
 }
 
 
@@ -18,6 +24,17 @@ function numberOfCharacters(string) {
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
   //Escribe tu código aquí
+  var obj = {};
+  var letrasDesordenadas = string.split("")
+  var letrasOrdenadas = letrasDesordenadas.sort();
+  for (var letra of letrasOrdenadas){
+    if (!obj[letra]){
+      obj[letra] = 1
+    }else{
+      obj[letra] = obj[letra] + 1 
+    }
+  } 
+  return obj;
 }
 
 
@@ -26,6 +43,17 @@ function capToFront(s) {
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
   //Escribe tu código aquí
+  var mayusculas =[];
+  var minusculas =[];
+  var arrayString = s.split("")
+  for (var letra of arrayString){
+    if (letra === letra.toUpperCase()){
+      mayusculas.push(letra);
+    } else {
+      minusculas.push(letra);
+    }
+  }
+  return mayusculas.join("") + minusculas.join("")
 }
 
 
@@ -35,6 +63,16 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
+  var fraseOrdenada = "";
+  var arrayStr = str.split(" ");
+  for (var i = 0; i < arrayStr.length; i++){
+   if(i!== 0){
+     fraseOrdenada += " " + arrayStr[i].split("").reverse().join("")
+   } else {
+    fraseOrdenada += arrayStr[i].split("").reverse().join("")
+   }
+  }
+  return fraseOrdenada;
 } 
 
 
@@ -43,6 +81,12 @@ function capicua(numero){
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí
+  var newNum = String(numero).split("").reverse().join("");
+  if (numero == newNum){ 
+    return "Es capicua"
+  } else { 
+  return "No es capicua"
+}
 }
 
 
@@ -50,22 +94,47 @@ function deleteAbc(cadena){
   //Define una función que elimine las letras "a", "b" y "c" de la cadena dada 
   //y devuelva la versión modificada o la misma cadena, en caso de contener dichas letras.
   //Escribe tu código aquí
+  var newCadena = [];
+  var strCadena = cadena.split("")
+  for (var letra of strCadena){
+    if (letra !== "a" && letra !== "b" && letra !== "c"){
+     newCadena.push(letra)
+    }
+  }
+  return newCadena.join("")
 }
 
 
 function sortArray(arr) {
-  //La función recibe una matriz de strings. Ordena la matriz en orden creciente de longitudes de cadena
-  //Ej: Recibe ---> ["You", "are", "beautiful", "looking"] || Devuelve ---> [“You", "are", "looking", "beautiful"]
+  //La función recibe una matriz de strings.
+  // Ordena la matriz en orden creciente de longitudes de cadena
+  //Ej: Recibe ---> ["You", "are", "beautiful", "looking"] 
+  //   Devuelve---> [“You", "are", "looking", "beautiful"]
   //Escribe tu código aquí
+  return arr.sort(function(a, b){
+    return a.length - b.length
+   })
+   
 }
 
 
 function buscoInterseccion(arreglo1, arreglo2){
-  //Existen dos arrays, cada uno con 5 números. A partir de ello, escribir una función que permita 
-  //retornar un nuevo array con la intersección de ambos elementos. (Ej: [4,2,3] unión [1,3,4] = [3,4].
+  //Existen dos arrays, cada uno con 5 números. A partir de ello, 
+  //escribir una función que permita 
+  //retornar un nuevo array con la intersección de ambos elementos. 
+  //(Ej: [4,2,3] unión [1,3,4] = [3,4].
   //Si no tienen elementos en común, retornar un arreglo vacío.
   //Aclaración: los arreglos no necesariamente tienen la misma longitud
-  //Escribe tu código aquí  
+  //Escribe tu código aquí
+  var newAray = [];
+  for(var i = 0; i < arreglo1.length; i ++){
+    for(var j = 0; j < arreglo2.length; j ++){
+      if (arreglo1[i] === arreglo2[j]){
+        newAray.push(arreglo1[i])
+      }
+    }
+  }  
+  return newAray;
 }
 
 
